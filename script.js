@@ -1,3 +1,6 @@
+
+function __lf(s,w,h){var n=0,x=String(s);for(var i=0;i<x.length;i++){n=(n*31+x.charCodeAt(i))>>>0;}return 'https://loremflickr.com/'+w+'/'+h+'/tattoo?lock='+(n%100000);}
+function __av(s){return 'https://i.pravatar.cc/200?u=ironink'+encodeURIComponent(String(s));}
 /* ===================== IRON & INK — script.js ===================== */
 (function () {
   'use strict';
@@ -49,7 +52,7 @@
     fig.setAttribute('aria-label', `View ${w.title} by ${w.artist}`);
     const h = w.tall ? 1000 : 600;
     fig.innerHTML =
-      `<img src="https://picsum.photos/seed/${w.seed}/600/${h}" width="600" height="${h}" alt="${w.title} tattoo by ${w.artist}" loading="lazy" />` +
+      `<img src="${__lf(w.seed, 600, h)}" width="600" height="${h}" alt="${w.title} tattoo by ${w.artist}" loading="lazy" />` +
       `<figcaption><span class="cat-tag">${catLabel[w.cat]}</span>${w.title} · ${w.artist}</figcaption>`;
     gallery.appendChild(fig);
   });
@@ -81,7 +84,7 @@
   function renderLB() {
     const w = works[Number(visible[pos].dataset.index)];
     const h = w.tall ? 1400 : 1000;
-    lbImg.src = `https://picsum.photos/seed/${w.seed}/1100/${h}`;
+    lbImg.src = `${__lf(w.seed, 1100, h)}`;
     lbImg.alt = `${w.title} tattoo by ${w.artist}`;
     lbCap.textContent = `${catLabel[w.cat]} — ${w.title} · ${w.artist}`;
   }
@@ -116,7 +119,7 @@
     const card = document.createElement('article');
     card.className = 'artist-card reveal';
     card.innerHTML =
-      `<div class="artist-photo"><img src="https://picsum.photos/seed/${a.seed}/500/625" width="500" height="625" alt="Portrait of tattoo artist ${a.name}" loading="lazy" /></div>` +
+      `<div class="artist-photo"><img src="https://loremflickr.com/500/625/tattoo?lock=6730" width="500" height="625" alt="Portrait of tattoo artist ${a.name}" loading="lazy" /></div>` +
       `<div class="artist-body"><h3>${a.name}</h3><p class="artist-role">${a.role}</p><p>${a.bio}</p>` +
       `<div class="artist-tags">${a.tags.map((t) => `<span>${t}</span>`).join('')}</div></div>`;
     ag.appendChild(card);
